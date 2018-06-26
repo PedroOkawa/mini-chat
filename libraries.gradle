@@ -1,0 +1,91 @@
+apply from: '../versions.gradle'
+
+ext.libraries = [
+
+        google : [
+                archCoreCommon          : "androidx.arch.core:core-common:$versions.architectureVersion",
+                lifecycleCommon         : "androidx.lifecycle:lifecycle-common:$versions.architectureVersion",
+                lifecycleCompiler       : "androidx.lifecycle:lifecycle-compiler:$versions.architectureVersion",
+                lifecycleLiveData       : "androidx.lifecycle:lifecycle-livedata:$versions.architectureVersion",
+                lifecycleViewModel      : "androidx.lifecycle:lifecycle-viewmodel:$versions.architectureVersion",
+                pagingCommon            : "androidx.paging:paging-common:$versions.architectureVersion",
+                roomCommon              : "androidx.room:room-common:$versions.architectureVersion",
+                roomCompiler            : "androidx.room:room-compiler:$versions.architectureVersion",
+                roomRuntime             : "androidx.room:room-runtime:$versions.architectureVersion",
+                espressoContrib         : "androidx.test.espresso:espresso-contrib:$versions.espressoVersion",
+                espressoCore            : "androidx.test.espresso:espresso-core:$versions.espressoVersion",
+                espressoIdlingResource  : "androidx.test.espresso:espresso-idling-resource:$versions.espressoVersion",
+                espressoIntents         : "androidx.test.espresso:espresso-intents:$versions.espressoVersion",
+                rules                   : "androidx.test:rules:$versions.testVersion",
+                runner                  : "androidx.test:runner:$versions.testVersion",
+                appCompat               : "androidx.appcompat:appcompat:$versions.appCompatVersion",
+                cardView                : "androidx.cardview:cardview:$versions.appCompatVersion",
+                cordinatorLayout        : "androidx.coordinatorlayout:coordinatorlayout:$versions.appCompatVersion",
+                material                : "com.google.android.material:material:$versions.appCompatVersion",
+                recyclerView            : "androidx.recyclerview:recyclerview:$versions.appCompatVersion"
+        ],
+
+        crashlytics : [
+                base                : "com.crashlytics.sdk.android:crashlytics:$versions.crashlyticsVersion"
+        ],
+
+        dagger : [
+                base                : "com.google.dagger:dagger:$versions.daggerVersion",
+                compiler            : "com.google.dagger:dagger-compiler:$versions.daggerVersion",
+                android             : "com.google.dagger:dagger-android:$versions.daggerVersion",
+                androidProcessor    : "com.google.dagger:dagger-android-processor:$versions.daggerVersion",
+                androidSupport      : "com.google.dagger:dagger-android-support:$versions.daggerVersion"
+        ],
+
+        dataBinding : [
+                compiler            : "com.android.databinding:compiler:$versions.dataBindingVersion"
+        ],
+
+        dexMaker : [
+                base                : "com.crittercism.dexmaker:dexmaker:$versions.dexMakerVersion",
+                dx                  : "com.crittercism.dexmaker:dexmaker-dx:$versions.dexMakerVersion",
+                mockito             : "com.crittercism.dexmaker:dexmaker-mockito:$versions.dexMakerVersion"
+        ],
+
+        espresso : [
+                base                : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion"
+        ],
+
+        glide : [
+                base                : "com.github.bumptech.glide:glide:$versions.glideVersion",
+                compiler            : "com.github.bumptech.glide:compiler:$versions.glideVersion"
+        ],
+
+        gson : [
+                base                : "com.google.code.gson:gson:$versions.gsonVersion"
+        ],
+
+        jUnit : [
+                base                : "junit:junit:$versions.jUnitVersion"
+        ],
+
+        kotlin : [
+                base                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+        ],
+
+        mockito : [
+                base                : "org.mockito:mockito-core:$versions.mockitoVersion"
+        ],
+
+        okHttp : [
+                logging             : "com.squareup.okhttp3:logging-interceptor:$versions.loggingOkHttpVersion"
+        ],
+
+        picasso : [
+                base                : "com.squareup.picasso:picasso:$versions.picassoVersion"
+        ],
+
+        retrofit : [
+                base                : "com.squareup.retrofit2:retrofit:$versions.retrofitVersion",
+                gsonConverter       : "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+        ],
+
+        runner : [
+                base                : "com.android.support.test:runner:$versions.runnerVersion"
+        ]
+]

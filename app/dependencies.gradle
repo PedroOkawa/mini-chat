@@ -1,0 +1,41 @@
+apply from: '../libraries.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /* GOOGLE */
+    implementation libraries.google.lifecycleCommon
+    implementation libraries.google.appCompat
+
+    /* DAGGER */
+    implementation libraries.dagger.base
+    implementation libraries.dagger.android
+    implementation libraries.dagger.androidSupport
+    kapt libraries.dagger.compiler
+    kapt libraries.dagger.androidProcessor
+
+    /* GLIDE */
+    implementation libraries.glide.base
+
+    /* GSON */
+    implementation libraries.gson.base
+
+    /* KOTLIN */
+    implementation libraries.kotlin.base
+
+    /* LOGGING INTERCEPTOR (OK HTTP) */
+    implementation libraries.okHttp.logging
+
+    /* RETROFIT */
+    implementation libraries.retrofit.base
+    implementation libraries.retrofit.gsonConverter
+
+    /** TESTS **/
+
+    /* JUNIT */
+    testImplementation libraries.jUnit.base
+
+    /* ESPRESSO */
+    androidTestImplementation libraries.google.runner
+    androidTestImplementation libraries.google.espressoCore
+}
