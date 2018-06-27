@@ -9,13 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import javax.inject.Inject
+import com.okawa.minichat.di.component.AppComponent
+
 
 abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : Fragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     protected lateinit var viewModel: VM
     protected lateinit var dataBinding: T
@@ -23,13 +20,16 @@ abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : Fragment() {
     @LayoutRes
     abstract fun layoutToInflate(): Int
 
-    abstract fun retrieveViewModel(viewModelFactory: ViewModelProvider.Factory) : VM
+    abstract fun defineViewModel() : VM
+
+    abstract fun inject(appComponent: AppComponent)
 
     abstract fun doOnCreated()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = defineDataBinding(inflater, container)
-        defineViewModel()
+        viewModel = defineViewModel()
+        inject(getApp().appComponent)
         doOnCreated()
         return view
     }
@@ -39,8 +39,8 @@ abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : Fragment() {
         return dataBinding.root
     }
 
-    private fun defineViewModel() {
-        viewModel = retrieveViewModel(viewModelFactory)
-    }
+    fun getBaseActivity() = activity as BaseActivity<*>
+
+    fun getApp() = getBaseActivity().getApp()
 
 }

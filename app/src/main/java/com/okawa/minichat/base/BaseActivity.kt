@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.okawa.minichat.App
+import com.okawa.minichat.di.component.AppComponent
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
@@ -24,10 +26,13 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     open fun initialFragment(): Fragment? = null
 
+    abstract fun inject(appComponent: AppComponent)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         defineDataBinding()
+        inject(getApp().appComponent)
 
         if (savedInstanceState == null) {
             defineInitialFragment()
@@ -39,12 +44,16 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     }
 
     private fun defineInitialFragment() {
-        if (containerId() != DEFAULT_CONTAINER_ID && initialFragment() != null) {
+        val initialFragment = initialFragment() ?: return
+
+        if (containerId() != DEFAULT_CONTAINER_ID) {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(containerId(), initialFragment()!!)
+                    .replace(containerId(), initialFragment)
                     .commitNow()
         }
     }
+
+    fun getApp() = application as App
 
 }

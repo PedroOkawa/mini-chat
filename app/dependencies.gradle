@@ -24,6 +24,7 @@ dependencies {
 
     /* KOTLIN */
     implementation libraries.kotlin.base
+    implementation libraries.kotlin.extensions
 
     /* LOGGING INTERCEPTOR (OK HTTP) */
     implementation libraries.okHttp.logging

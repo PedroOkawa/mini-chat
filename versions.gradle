@@ -10,6 +10,7 @@ ext.versions = [
         glideVersion: '4.5.0',
         gsonVersion: '2.8.1',
         jUnitVersion: '4.12',
+        kotlinExtensionsVersion: '1.0.0-alpha1',
         loggingOkHttpVersion: '3.9.1',
         mockitoVersion: '1.10.19',
         picassoVersion: '2.5.2',

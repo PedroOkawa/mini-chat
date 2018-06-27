@@ -1,4 +1,4 @@
-package com.okawa.minichat.di
+package com.okawa.minichat.di.module
 
 import com.okawa.minichat.App
 import dagger.Module
