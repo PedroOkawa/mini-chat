@@ -4,8 +4,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     /* GOOGLE */
-    implementation libraries.google.lifecycleCommon
     implementation libraries.google.appCompat
+    implementation libraries.google.lifecycleCommon
+    implementation libraries.google.lifecycleExtensions
+    implementation libraries.google.recyclerView
 
     /* DAGGER */
     implementation libraries.dagger.base

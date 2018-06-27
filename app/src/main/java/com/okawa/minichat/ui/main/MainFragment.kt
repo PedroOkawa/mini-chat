@@ -1,24 +1,24 @@
 package com.okawa.minichat.ui.main
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.okawa.minichat.R
+import com.okawa.minichat.base.BaseFragment
+import com.okawa.minichat.databinding.MainFragmentBinding
 
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment<MainFragmentBinding, MainViewModel>() {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
+    override fun layoutToInflate() = R.layout.main_fragment
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun retrieveViewModel(viewModelFactory: ViewModelProvider.Factory) =
+            ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+
+    override fun doOnCreated() {
+
     }
 
 }

@@ -1,19 +1,12 @@
 package com.okawa.minichat
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.okawa.minichat.ui.main.MainFragment
+import com.okawa.minichat.base.BaseActivity
+import com.okawa.minichat.databinding.MainActivityBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<MainActivityBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow()
-        }
-    }
+    override fun layoutToInflate() = R.layout.main_activity
+
+    override fun containerId() = R.id.container
 
 }

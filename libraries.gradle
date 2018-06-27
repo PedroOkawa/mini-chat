@@ -6,6 +6,7 @@ ext.libraries = [
                 archCoreCommon          : "androidx.arch.core:core-common:$versions.architectureVersion",
                 lifecycleCommon         : "androidx.lifecycle:lifecycle-common:$versions.architectureVersion",
                 lifecycleCompiler       : "androidx.lifecycle:lifecycle-compiler:$versions.architectureVersion",
+                lifecycleExtensions     : "androidx.lifecycle:lifecycle-extensions:$versions.architectureVersion",
                 lifecycleLiveData       : "androidx.lifecycle:lifecycle-livedata:$versions.architectureVersion",
                 lifecycleViewModel      : "androidx.lifecycle:lifecycle-viewmodel:$versions.architectureVersion",
                 pagingCommon            : "androidx.paging:paging-common:$versions.architectureVersion",
