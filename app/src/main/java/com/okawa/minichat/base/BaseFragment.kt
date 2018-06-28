@@ -1,18 +1,16 @@
 package com.okawa.minichat.base
 
+import android.arch.lifecycle.ViewModel
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import com.okawa.minichat.di.component.AppComponent
+import dagger.android.support.DaggerFragment
 
-
-abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : DaggerFragment() {
 
     protected lateinit var viewModel: VM
     protected lateinit var dataBinding: T
@@ -22,14 +20,11 @@ abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : Fragment() {
 
     abstract fun defineViewModel() : VM
 
-    abstract fun inject(appComponent: AppComponent)
-
     abstract fun doOnCreated()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = defineDataBinding(inflater, container)
         viewModel = defineViewModel()
-        inject(getApp().appComponent)
         doOnCreated()
         return view
     }
@@ -40,7 +35,5 @@ abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : Fragment() {
     }
 
     fun getBaseActivity() = activity as BaseActivity<*>
-
-    fun getApp() = getBaseActivity().getApp()
 
 }

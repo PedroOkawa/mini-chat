@@ -1,34 +1,29 @@
 package com.okawa.minichat.di.component
 
-import com.google.gson.Gson
+import android.app.Application
 import com.okawa.minichat.App
-import com.okawa.minichat.api.ApiManager
-import com.okawa.minichat.api.ApiService
+import com.okawa.minichat.di.module.ActivityBuildersModule
 import com.okawa.minichat.di.module.AppModule
 import com.okawa.minichat.di.module.ApiModule
 import com.okawa.minichat.di.module.UtilsModule
+import dagger.BindsInstance
 import dagger.Component
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ ApiModule::class, AppModule::class, UtilsModule::class ])
-interface AppComponent {
+@Component(modules = [ ActivityBuildersModule::class, AndroidSupportInjectionModule::class, ApiModule::class, AppModule::class, UtilsModule::class ])
+interface AppComponent : AndroidInjector<App> {
 
-    /* APP */
-    fun inject(app: App)
-    fun provideApp() : App
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: Application): Builder
 
-    /* API */
-    fun provideLoggingInterceptor() : HttpLoggingInterceptor
-    fun provideGson() : Gson
-    fun provideOkHttpClient() : OkHttpClient
-    fun provideRetrofit() : Retrofit
-    fun provideApiService() : ApiService
+        fun build(): AppComponent
+    }
 
-    /* UTILS */
-    fun provideApiManager() : ApiManager
+    override fun inject(app: App)
 
 }

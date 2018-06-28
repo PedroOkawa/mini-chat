@@ -1,16 +1,14 @@
 package com.okawa.minichat.base
 
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
-import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
-import com.okawa.minichat.App
-import com.okawa.minichat.di.component.AppComponent
+import android.support.annotation.IdRes
+import android.support.annotation.LayoutRes
+import android.support.v4.app.Fragment
+import dagger.android.support.DaggerAppCompatActivity
 
-abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<T : ViewDataBinding> : DaggerAppCompatActivity() {
 
     companion object {
         const val DEFAULT_CONTAINER_ID = 0
@@ -26,13 +24,10 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     open fun initialFragment(): Fragment? = null
 
-    abstract fun inject(appComponent: AppComponent)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         defineDataBinding()
-        inject(getApp().appComponent)
 
         if (savedInstanceState == null) {
             defineInitialFragment()
@@ -53,7 +48,5 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                     .commitNow()
         }
     }
-
-    fun getApp() = application as App
 
 }

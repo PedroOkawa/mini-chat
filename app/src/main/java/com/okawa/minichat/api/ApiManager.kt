@@ -4,6 +4,6 @@ import javax.inject.Inject
 
 class ApiManager @Inject constructor(private  val apiService: ApiService) {
 
-    public fun getConversation() = apiService.getConversation()
+    fun getConversation() = apiService.getConversation()
 
 }

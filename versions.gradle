@@ -1,12 +1,17 @@
 ext.versions = [
 
-        appCompatVersion: '1.0.0-alpha1',
-        architectureVersion: '2.0.0-alpha1',
+        androidXAppCompatVersion: '1.0.0-alpha1',
+        androidXArchitectureVersion: '2.0.0-alpha1',
+        appCompatVersion: '27.0.2',
+        appCompatMultidexVersion: '1.0.3',
+        appCompatConstraintLayoutVersion: '1.0.2',
+        architectureVersion: '1.0.0',
+        architecturePagingVersion: '1.0.0-alpha4-1',
         crashlyticsVersion: '2.9.1',
         daggerVersion: '2.16',
         dataBindingVersion: '3.0.0-beta5',
         dexMakerVersion: '1.4',
-        espressoVersion: '3.1.0-alpha1',
+        androidXEspressoVersion: '3.1.0-alpha1',
         glideVersion: '4.5.0',
         gsonVersion: '2.8.1',
         jUnitVersion: '4.12',
@@ -16,7 +21,10 @@ ext.versions = [
         picassoVersion: '2.5.2',
         retrofitVersion: '2.3.0',
         runnerVersion: '1.0.2',
-        testVersion: '1.1.0-alpha1',
+        rxAndroidVersion: '2.0.1',
+        rxJavaVersion: '2.0.1',
+        rxKotlinVersion: '2.2.0',
+        androidXTestVersion: '1.1.0-alpha1',
 
         // ANDROID CONFIGS
         compileSdk: 28,

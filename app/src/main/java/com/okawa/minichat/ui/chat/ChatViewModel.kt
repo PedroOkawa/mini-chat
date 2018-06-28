@@ -1,7 +1,13 @@
 package com.okawa.minichat.ui.chat
 
-import androidx.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModel
+import com.okawa.minichat.usecase.ConversationUseCase
+import javax.inject.Inject
 
-class ChatViewModel : ViewModel() {
+class ChatViewModel @Inject constructor(private val conversationUseCase: ConversationUseCase): ViewModel() {
+
+    fun retrieveConversation() {
+        conversationUseCase.retrieveConversation()
+    }
 
 }

@@ -5,7 +5,7 @@ import com.okawa.minichat.api.ApiService
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(includes = [ RepositoryModule::class, UseCaseModule::class ])
 class UtilsModule {
 
     @Provides

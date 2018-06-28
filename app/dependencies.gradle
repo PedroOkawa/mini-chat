@@ -4,10 +4,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     /* GOOGLE */
-    implementation libraries.google.appCompat
-    implementation libraries.google.lifecycleCommon
-    implementation libraries.google.lifecycleExtensions
-    implementation libraries.google.recyclerView
+    implementation libraries.architecture.lifecycle
+    implementation libraries.appCompat.base
+    implementation libraries.appCompat.recyclerView
 
     /* DAGGER */
     implementation libraries.dagger.base
@@ -24,7 +23,6 @@ dependencies {
 
     /* KOTLIN */
     implementation libraries.kotlin.base
-    implementation libraries.kotlin.extensions
 
     /* LOGGING INTERCEPTOR (OK HTTP) */
     implementation libraries.okHttp.logging
