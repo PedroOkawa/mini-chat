@@ -1,6 +1,6 @@
-package com.okawa.minichat.api
+package com.okawa.minichat.api.service
 
-import com.okawa.minichat.model.api.Conversation
+import com.okawa.minichat.api.model.Conversation
 import retrofit2.Call
 import retrofit2.http.GET
 

@@ -3,7 +3,7 @@ package com.okawa.minichat.di.module
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.okawa.minichat.BuildConfig
-import com.okawa.minichat.api.ApiService
+import com.okawa.minichat.api.service.ApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
