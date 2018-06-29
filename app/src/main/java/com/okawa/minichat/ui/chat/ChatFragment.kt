@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.util.Log
 import com.okawa.minichat.R
 import com.okawa.minichat.base.BaseFragment
+import com.okawa.minichat.data.Status
 import com.okawa.minichat.databinding.FragmentChatBinding
 import javax.inject.Inject
 
@@ -25,7 +26,8 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     override fun doOnCreated() {
         viewModel.retrieveConversation().observe(this, Observer { resource ->
-            Log.w("TEST", "STATUS: ${resource?.status}\nTOTAL MESSAGES: ${resource?.data?.size}")
+            dataBinding.loading = resource?.status == Status.LOADING
+            //Log.w("TEST", "STATUS: ${resource?.status}\nTOTAL MESSAGES: ${resource?.data?.size}")
         })
     }
 
