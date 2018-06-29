@@ -1,9 +1,10 @@
 package com.okawa.minichat.utils
 
-import com.okawa.minichat.api.model.Attachment
+import com.okawa.minichat.api.model.Conversation
 import com.okawa.minichat.api.model.Message
 import com.okawa.minichat.api.model.User
 import com.okawa.minichat.db.dao.AttachmentDao
+import com.okawa.minichat.db.dao.FullMessageDao
 import com.okawa.minichat.db.dao.MessageDao
 import com.okawa.minichat.db.dao.UserDao
 import javax.inject.Inject
@@ -11,37 +12,37 @@ import javax.inject.Singleton
 
 @Singleton
 class DatabaseManager @Inject constructor(
-        private val appExecutors: AppExecutors,
         private val attachmentDao: AttachmentDao,
         private val attachmentMapper: AttachmentMapper,
+        private val fullMessageDao: FullMessageDao,
         private val messageDao: MessageDao,
         private val messageMapper: MessageMapper,
         private val userDao: UserDao,
         private val userMapper: UserMapper
 ) {
 
-    fun storeAttachments(attachments: List<Attachment>) {
-        appExecutors.getDiskIO().execute {
-            attachmentDao.insertAll(attachmentMapper.convertToDB(attachments))
+    fun storeConversation(conversation: Conversation) {
+        storeMessages(conversation.messages)
+        storeUsers(conversation.users)
+    }
+
+    private fun storeMessages(messages: List<Message>) {
+        messages.forEach {
+            messageDao.insert(messageMapper.convertToDB(it))
+            storeAttachments(it)
         }
     }
 
-    fun storeMessages(messages: List<Message>) {
-        appExecutors.getDiskIO().execute {
-            messageDao.insertAll(messageMapper.convertToDB(messages))
-        }
+    private fun storeAttachments(message: Message) {
+        attachmentDao.insertAll(attachmentMapper.convertToDB(message)?: return)
     }
 
-    fun storeUsers(users: List<User>) {
-        appExecutors.getDiskIO().execute {
-            userDao.insertAll(userMapper.convertToDB(users))
-        }
+    private fun storeUsers(users: List<User>) {
+        userDao.insertAll(userMapper.convertToDB(users))
     }
 
-    fun retrieveAttachments() = attachmentDao.selectAll()
+    fun retrieveConversation() = fullMessageDao.loadFullMessages()
 
-    fun retrieveMessages() = messageDao.selectAll()
-
-    fun retrieveUsers() = userDao.selectAll()
+    fun checkIfHasDataStored() = fullMessageDao.hasAnyRecord()
 
 }

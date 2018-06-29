@@ -1,11 +1,10 @@
 package com.okawa.minichat.db.model
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.*
 
-@Entity(tableName = "attachments")
-data class AttachmentEntity(@PrimaryKey val id: String,
-                            @ColumnInfo(name = "title") val title: String,
-                            @ColumnInfo(name = "url") val url: String,
-                            @ColumnInfo(name = "thumbnail_url") val thumbnailUrl: String)
+@Entity(tableName = "attachment")
+data class AttachmentEntity(@PrimaryKey @ColumnInfo(name = "_attachment_id") var id: String,
+                            @ColumnInfo(name = "message_id") var messageId: Long,
+                            @ColumnInfo(name = "title") var title: String,
+                            @ColumnInfo(name = "url") var url: String,
+                            @ColumnInfo(name = "thumbnail_url") var thumbnailUrl: String)

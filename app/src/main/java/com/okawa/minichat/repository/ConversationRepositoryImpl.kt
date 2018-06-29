@@ -1,29 +1,38 @@
 package com.okawa.minichat.repository
 
-import com.okawa.minichat.utils.ApiManager
+import android.arch.lifecycle.LiveData
 import com.okawa.minichat.api.model.Conversation
+import com.okawa.minichat.db.relation.FullMessage
+import com.okawa.minichat.utils.ApiManager
+import com.okawa.minichat.utils.AppExecutors
+import com.okawa.minichat.utils.DataHandler
 import com.okawa.minichat.utils.DatabaseManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 class ConversationRepositoryImpl
-@Inject constructor(
-        private val apiManager: ApiManager,
-        private var databaseManager: DatabaseManager
+@Inject constructor(private val apiManager: ApiManager,
+                    private val appExecutors: AppExecutors,
+                    private val databaseManager: DatabaseManager
 ) : ConversationRepository {
 
-    override fun getConversation() {
-        apiManager.getConversation().enqueue(object: Callback<Conversation> {
-            override fun onFailure(call: Call<Conversation>?, t: Throwable?) {
+    override fun getConversation(): LiveData<List<FullMessage>> {
+        object : DataHandler<Conversation>(appExecutors) {
+
+            override fun requestFromNetwork() = !databaseManager.checkIfHasDataStored()
+
+            override fun requestToExecute() = apiManager.getConversation()
+
+            override fun onError() {
 
             }
 
-            override fun onResponse(call: Call<Conversation>?, response: Response<Conversation>?) {
-                databaseManager.storeMessages(response?.body()?.messages?: return)
+            override fun onSuccess(conversation: Conversation) {
+                databaseManager.storeConversation(conversation)
             }
-        })
+
+        }
+
+        return databaseManager.retrieveConversation()
     }
 
 }

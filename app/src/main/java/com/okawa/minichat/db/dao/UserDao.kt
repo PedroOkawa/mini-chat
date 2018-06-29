@@ -1,6 +1,5 @@
 package com.okawa.minichat.db.dao
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
@@ -16,7 +15,7 @@ interface UserDao {
     @Insert(onConflict = REPLACE)
     fun insertAll(users: List<UserEntity>)
 
-    @Query("select * from user")
-    fun selectAll() : LiveData<List<UserEntity>>
+    @Query("SELECT COUNT(*) FROM user")
+    fun count() : Int
 
 }

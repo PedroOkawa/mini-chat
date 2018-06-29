@@ -8,10 +8,6 @@ class MessageMapper @Inject constructor() {
 
     fun convertToDB(message: Message) = MessageEntity(message.id, message.userId, message.content)
 
-    fun convertToDB(messages: List<Message>) : List<MessageEntity> {
-        val result = ArrayList<MessageEntity>()
-        messages.forEach { result.add(convertToDB(it)) }
-        return result
-    }
+    fun convertToDB(messages: List<Message>) = messages.map { convertToDB(it) }
 
 }

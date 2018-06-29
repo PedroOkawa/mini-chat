@@ -8,10 +8,6 @@ class UserMapper @Inject constructor() {
 
     fun convertToDB(user: User) = UserEntity(user.id, user.name, user.avatarId)
 
-    fun convertToDB(users: List<User>) : List<UserEntity> {
-        val result = ArrayList<UserEntity>()
-        users.forEach { result.add(convertToDB(it)) }
-        return result
-    }
+    fun convertToDB(users: List<User>) = users.map { convertToDB(it) }
 
 }
