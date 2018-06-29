@@ -1,7 +1,9 @@
 package com.okawa.minichat.ui.chat
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.util.Log
 import com.okawa.minichat.R
 import com.okawa.minichat.base.BaseFragment
 import com.okawa.minichat.databinding.FragmentChatBinding
@@ -22,7 +24,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     override fun layoutToInflate() = R.layout.fragment_chat
 
     override fun doOnCreated() {
-        viewModel.retrieveConversation()
+        viewModel.retrieveConversation().observe(this, Observer { resource ->
+            Log.w("TEST", "STATUS: ${resource?.status}\nTOTAL MESSAGES: ${resource?.data?.size}")
+        })
     }
 
 }

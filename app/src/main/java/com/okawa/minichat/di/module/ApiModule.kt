@@ -3,6 +3,7 @@ package com.okawa.minichat.di.module
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.okawa.minichat.BuildConfig
+import com.okawa.minichat.api.adapter.LiveDataCallAdapterFactory
 import com.okawa.minichat.api.service.ApiService
 import dagger.Module
 import dagger.Provides
@@ -56,6 +57,7 @@ class ApiModule {
         return Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .client(okHttpClient)
                 .build()
     }

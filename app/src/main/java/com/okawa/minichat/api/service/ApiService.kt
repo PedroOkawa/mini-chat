@@ -1,12 +1,13 @@
 package com.okawa.minichat.api.service
 
+import android.arch.lifecycle.LiveData
 import com.okawa.minichat.api.model.Conversation
-import retrofit2.Call
+import com.okawa.minichat.api.response.ApiResponse
 import retrofit2.http.GET
 
 interface ApiService {
 
     @GET("conversation")
-    fun getConversation() : Call<Conversation>
+    fun getConversation() : LiveData<ApiResponse<Conversation>>
 
 }

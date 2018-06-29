@@ -22,10 +22,14 @@ abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : DaggerFragmen
 
     abstract fun doOnCreated()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = defineDataBinding(inflater, container)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         viewModel = defineViewModel()
         doOnCreated()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val view = defineDataBinding(inflater, container)
         return view
     }
 

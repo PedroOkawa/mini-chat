@@ -15,6 +15,7 @@ class ViewModelFactory @Inject constructor(private val creators: Map<Class<out V
         }?.value ?: throw IllegalArgumentException()
 
         return try {
+            @Suppress("UNCHECKED_CAST")
             creator.get() as T
         } catch (exception: Exception) {
             throw RuntimeException(exception)

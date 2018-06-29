@@ -2,10 +2,11 @@ package com.okawa.minichat.repository
 
 import android.arch.lifecycle.LiveData
 import com.okawa.minichat.api.model.Conversation
+import com.okawa.minichat.data.NetworkBoundResource
+import com.okawa.minichat.data.Result
 import com.okawa.minichat.db.relation.FullMessage
 import com.okawa.minichat.utils.ApiManager
 import com.okawa.minichat.utils.AppExecutors
-import com.okawa.minichat.utils.DataHandler
 import com.okawa.minichat.utils.DatabaseManager
 import javax.inject.Inject
 
@@ -15,24 +16,20 @@ class ConversationRepositoryImpl
                     private val databaseManager: DatabaseManager
 ) : ConversationRepository {
 
-    override fun getConversation(): LiveData<List<FullMessage>> {
-        object : DataHandler<Conversation>(appExecutors) {
+    override fun getConversation(): LiveData<Result<List<FullMessage>>> {
+        return object : NetworkBoundResource<List<FullMessage>, Conversation>(appExecutors) {
 
-            override fun requestFromNetwork() = !databaseManager.checkIfHasDataStored()
+            override fun shouldRequestFromNetwork(data: List<FullMessage>?) = data?.isEmpty() == true
 
-            override fun requestToExecute() = apiManager.getConversation()
-
-            override fun onError() {
-
+            override fun saveCallResult(data: Conversation?) {
+                databaseManager.storeConversation(data?:return)
             }
 
-            override fun onSuccess(conversation: Conversation) {
-                databaseManager.storeConversation(conversation)
-            }
+            override fun loadFromDatabase() = databaseManager.retrieveConversation()
 
-        }
+            override fun createCall() = apiManager.getConversation()
 
-        return databaseManager.retrieveConversation()
+        }.asLiveData()
     }
 
 }

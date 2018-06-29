@@ -7,7 +7,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
-@Module(includes = [ RepositoryModule::class, UseCaseModule::class ])
+@Module(includes = [ RepositoryModule::class ])
 class UtilsModule {
 
     @Provides
