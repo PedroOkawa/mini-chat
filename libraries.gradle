@@ -29,6 +29,10 @@ ext.libraries = [
         architecture : [
                 lifecycle               : "android.arch.lifecycle:extensions:$versions.architectureVersion",
                 lifecycleCompiler       : "android.arch.lifecycle:compiler:$versions.architectureVersion",
+                lifecycleRuntime        : "android.arch.lifecycle:runtime:$versions.architectureVersion",
+                viewModel               : "android.arch.lifecycle:viewmodel:$versions.architectureVersion",
+                viewModelKotlin         : "android.arch.lifecycle:viewmodel-ktx:$versions.architectureVersion",
+                livedata                : "android.arch.lifecycle:livedata:$versions.architectureVersion",
                 paging                  : "android.arch.paging:runtime:$versions.architecturePagingVersion",
                 room                    : "android.arch.persistence.room:runtime:$versions.architectureVersion",
                 roomCompiler            : "android.arch.persistence.room:compiler:$versions.architectureVersion",

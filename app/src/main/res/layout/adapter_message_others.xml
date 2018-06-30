@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="avatarUrl"
+            type="String"/>
+        <variable
+            name="username"
+            type="String"/>
+        <variable
+            name="message"
+            type="String"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            circleImage="@{avatarUrl}"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:textStyle="bold"
+                android:text="@{username}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{message}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -5,6 +5,7 @@ dependencies {
 
     /* GOOGLE */
     implementation libraries.architecture.lifecycle
+    implementation libraries.architecture.paging
     implementation libraries.architecture.room
     kapt libraries.architecture.roomCompiler
     implementation libraries.appCompat.base

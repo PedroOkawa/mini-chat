@@ -1,6 +1,8 @@
 package com.okawa.minichat.repository
 
 import android.arch.lifecycle.LiveData
+import android.arch.paging.LivePagedListBuilder
+import android.arch.paging.PagedList
 import com.okawa.minichat.api.model.Conversation
 import com.okawa.minichat.data.NetworkBoundResource
 import com.okawa.minichat.data.Result
@@ -16,16 +18,20 @@ class ConversationRepositoryImpl
                     private val databaseManager: DatabaseManager
 ) : ConversationRepository {
 
-    override fun getConversation(): LiveData<Result<List<FullMessage>>> {
-        return object : NetworkBoundResource<List<FullMessage>, Conversation>(appExecutors) {
+    companion object {
+        private const val PAGE_SIZE = 20
+    }
 
-            override fun shouldRequestFromNetwork(data: List<FullMessage>?) = data?.isEmpty() == true
+    override fun getConversation(): LiveData<Result<PagedList<FullMessage>>> {
+        return object : NetworkBoundResource<PagedList<FullMessage>, Conversation>(appExecutors) {
+
+            override fun shouldRequestFromNetwork(data: PagedList<FullMessage>?) = data?.isEmpty() == true
 
             override fun saveCallResult(data: Conversation?) {
                 databaseManager.storeConversation(data?:return)
             }
 
-            override fun loadFromDatabase() = databaseManager.retrieveConversation()
+            override fun loadFromDatabase() = LivePagedListBuilder(databaseManager.retrieveConversation(), PAGE_SIZE).build()
 
             override fun createCall() = apiManager.getConversation()
 
