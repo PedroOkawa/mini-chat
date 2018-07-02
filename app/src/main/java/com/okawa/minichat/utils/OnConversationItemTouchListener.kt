@@ -7,7 +7,7 @@ import android.view.MotionEvent
 
 open class OnConversationItemTouchListener(context: Context?, recyclerView: RecyclerView?, val touchListener: TouchListener?) : RecyclerView.OnItemTouchListener {
 
-    lateinit var gestureDetector: GestureDetector
+    var gestureDetector: GestureDetector
 
     init {
         gestureDetector = GestureDetector(context, object: GestureDetector.SimpleOnGestureListener() {

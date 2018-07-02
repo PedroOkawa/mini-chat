@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="isMine"
+            type="Boolean"/>
+        <variable
+            name="image"
+            type="String"/>
+        <variable
+            name="title"
+            type="String"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|end"
+        android:weightSum="1"
+        android:baselineAligned="false">
+
+        <android.support.constraint.ConstraintLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:layout_margin="@dimen/adapter_message_content_margin"
+            android:background="@{ isMine ? @drawable/background_message_me : @drawable/background_message_others}">
+
+            <ImageView
+                android:id="@+id/imgAttachmentContent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                bind:image="@{image}"
+                bind:placeholder="@{@drawable/placeholder}"
+                app:layout_constraintDimensionRatio="1:1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/adapter_message_text_padding"
+                android:text="@{title}"
+                app:layout_constraintTop_toBottomOf="@+id/imgAttachmentContent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -21,7 +21,6 @@ import javax.inject.Inject
 import android.content.Intent
 import android.net.Uri
 
-
 class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     companion object {
@@ -80,9 +79,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
             Status.ERROR -> {
                 Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
             }
-            else -> {
-
-            }
+            Status.LOADING -> { }
         }
     }
 

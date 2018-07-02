@@ -25,7 +25,7 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("circleImage")
+    @BindingAdapter("bind:circleImage")
     fun circleImage(imageView: ImageView, path: String?) {
         Glide.with(imageView.context)
                 .load(path?:return)
