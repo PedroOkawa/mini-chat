@@ -6,7 +6,7 @@ import android.arch.paging.PagedList
 import com.okawa.minichat.api.model.Conversation
 import com.okawa.minichat.data.NetworkBoundResource
 import com.okawa.minichat.data.Result
-import com.okawa.minichat.db.relation.FullMessageEntity
+import com.okawa.minichat.db.relation.FullMessage
 import com.okawa.minichat.utils.ApiManager
 import com.okawa.minichat.utils.AppExecutors
 import com.okawa.minichat.utils.DatabaseManager
@@ -19,13 +19,14 @@ class ConversationRepositoryImpl
 ) : ConversationRepository {
 
     companion object {
+
         private const val PAGE_SIZE = 20
     }
 
-    override fun getConversation(): LiveData<Result<PagedList<FullMessageEntity>>> {
-        return object : NetworkBoundResource<PagedList<FullMessageEntity>, Conversation>(appExecutors) {
+    override fun getConversation(): LiveData<Result<PagedList<FullMessage>>> {
+        return object : NetworkBoundResource<PagedList<FullMessage>, Conversation>(appExecutors) {
 
-            override fun shouldRequestFromNetwork(data: PagedList<FullMessageEntity>?) = data?.isEmpty() == true
+            override fun shouldRequestFromNetwork(data: PagedList<FullMessage>?) = data?.isEmpty() == true
 
             override fun saveCallResult(data: Conversation?) {
                 databaseManager.storeConversation(data?:return)
@@ -36,6 +37,12 @@ class ConversationRepositoryImpl
             override fun createCall() = apiManager.getConversation()
 
         }.asLiveData()
+    }
+
+    override fun deleteMessage(messageId: Long) {
+        appExecutors.getDiskIO().execute {
+            databaseManager.deleteMessage(messageId)
+        }
     }
 
 }

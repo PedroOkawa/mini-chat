@@ -2,7 +2,7 @@ ext.versions = [
 
         androidXAppCompatVersion: '1.0.0-alpha1',
         androidXArchitectureVersion: '2.0.0-alpha1',
-        appCompatVersion: '27.0.2',
+        appCompatVersion: '27.1.1',
         appCompatMultidexVersion: '1.0.3',
         appCompatConstraintLayoutVersion: '1.0.2',
         architectureVersion: '1.1.1',

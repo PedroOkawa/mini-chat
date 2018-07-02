@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.okawa.minichat.di.ViewModelKey
 import com.okawa.minichat.di.factory.ViewModelFactory
 import com.okawa.minichat.ui.chat.ChatViewModel
+import com.okawa.minichat.ui.confirmation.ConfirmationViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,5 +20,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ChatViewModel::class)
     abstract fun bindChatViewModel(chatViewModel: ChatViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ConfirmationViewModel::class)
+    abstract fun bindConfirmationViewModel(confirmationViewModel: ConfirmationViewModel) : ViewModel
 
 }

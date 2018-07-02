@@ -9,9 +9,9 @@ import com.okawa.minichat.databinding.AdapterAttachmentMeBinding
 import com.okawa.minichat.databinding.AdapterAttachmentOthersBinding
 import com.okawa.minichat.databinding.AdapterMessageMeBinding
 import com.okawa.minichat.databinding.AdapterMessageOthersBinding
-import com.okawa.minichat.db.relation.FullMessageEntity
+import com.okawa.minichat.db.relation.FullMessage
 
-class ConversationAdapter : BasePagedAdapter<FullMessageEntity>(diffCallback) {
+class ConversationAdapter : BasePagedAdapter<FullMessage>(diffCallback) {
 
     companion object {
         const val USER_ME_ID: Long = 1
@@ -47,48 +47,64 @@ class ConversationAdapter : BasePagedAdapter<FullMessageEntity>(diffCallback) {
         else -> R.layout.adapter_attachment_others
     }
 
-    override fun doOnBindViewHolder(holder: RecyclerView.ViewHolder, item: FullMessageEntity?, position: Int) {
+    override fun doOnBindViewHolder(holder: RecyclerView.ViewHolder, item: FullMessage?, position: Int) {
         when(holder) {
             is MeMessageViewHolder -> {
-                holder.dataBinding.message = item?.message?.content
+                holder.setup(item)
             }
             is MeAttachmentViewHolder -> {
-                holder.dataBinding.image = item?.message?.thumbnailUrl
-                holder.dataBinding.title = item?.message?.title
+                holder.setup(item)
             }
             is OthersMessageViewHolder -> {
-                holder.dataBinding.avatarUrl = item?.user?.avatarId
-                holder.dataBinding.username = item?.user?.name
-                holder.dataBinding.message = item?.message?.content
+                holder.setup(item)
             }
             is OthersAttachmentViewHolder -> {
-                holder.dataBinding.image = item?.message?.thumbnailUrl
-                holder.dataBinding.title = item?.message?.title
+                holder.setup(item)
             }
         }
     }
 
     class MeMessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        var dataBinding: AdapterMessageMeBinding = DataBindingUtil.bind(view)!!
+        private var dataBinding: AdapterMessageMeBinding = DataBindingUtil.bind(view)!!
 
-    }
-
-    class OthersMessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        var dataBinding: AdapterMessageOthersBinding = DataBindingUtil.bind(view)!!
+        fun setup(item: FullMessage?) {
+            dataBinding.message = item?.message?.content
+        }
 
     }
 
     class MeAttachmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        var dataBinding: AdapterAttachmentMeBinding = DataBindingUtil.bind(view)!!
+        private var dataBinding: AdapterAttachmentMeBinding = DataBindingUtil.bind(view)!!
+
+        fun setup(item: FullMessage?) {
+            dataBinding.image = item?.message?.thumbnailUrl
+            dataBinding.title = item?.message?.title
+        }
+
+    }
+
+    class OthersMessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        private var dataBinding: AdapterMessageOthersBinding = DataBindingUtil.bind(view)!!
+
+        fun setup(item: FullMessage?) {
+            dataBinding.avatarUrl = item?.user?.avatarId
+            dataBinding.username = item?.user?.name
+            dataBinding.message = item?.message?.content
+        }
 
     }
 
     class OthersAttachmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        var dataBinding: AdapterAttachmentOthersBinding = DataBindingUtil.bind(view)!!
+        private var dataBinding: AdapterAttachmentOthersBinding = DataBindingUtil.bind(view)!!
+
+        fun setup(item: FullMessage?) {
+            dataBinding.image = item?.message?.thumbnailUrl
+            dataBinding.title = item?.message?.title
+        }
 
     }
 

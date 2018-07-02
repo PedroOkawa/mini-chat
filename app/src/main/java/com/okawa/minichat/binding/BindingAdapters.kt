@@ -1,12 +1,11 @@
 package com.okawa.minichat.binding
 
 import android.databinding.BindingAdapter
-import android.support.annotation.DrawableRes
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.okawa.minichat.R
 
 object BindingAdapters {
 
@@ -17,19 +16,19 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("bind:image")
-    fun image(imageView: ImageView, image: String) {
+    @BindingAdapter(value = ["bind:placeholder", "bind:image"])
+    fun image(imageView: ImageView, placeholder: Drawable?, image: String?) {
         Glide.with(imageView.context)
-                .load(image)
-                .apply(RequestOptions().dontAnimate())
+                .load(image?:return)
+                .apply(RequestOptions().placeholder(placeholder).dontAnimate())
                 .into(imageView)
     }
 
     @JvmStatic
     @BindingAdapter("circleImage")
-    fun circleImage(imageView: ImageView, path: String) {
+    fun circleImage(imageView: ImageView, path: String?) {
         Glide.with(imageView.context)
-                .load(path)
+                .load(path?:return)
                 .apply(RequestOptions.circleCropTransform())
                 .into(imageView)
     }

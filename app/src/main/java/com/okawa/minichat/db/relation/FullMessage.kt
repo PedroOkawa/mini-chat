@@ -4,7 +4,7 @@ import android.arch.persistence.room.Embedded
 import com.okawa.minichat.db.model.MessageEntity
 import com.okawa.minichat.db.model.UserEntity
 
-data class FullMessageEntity(
+data class FullMessage(
 
         @Embedded
         var message: MessageEntity?,

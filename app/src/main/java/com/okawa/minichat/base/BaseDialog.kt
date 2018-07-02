@@ -8,9 +8,9 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dagger.android.support.DaggerFragment
+import dagger.android.support.DaggerAppCompatDialogFragment
 
-abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : DaggerFragment() {
+abstract class BaseDialog<T : ViewDataBinding, VM : ViewModel> : DaggerAppCompatDialogFragment() {
 
     protected lateinit var viewModel: VM
     protected lateinit var dataBinding: T
@@ -29,10 +29,10 @@ abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel> : DaggerFragmen
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-            defineDataBinding(inflater, container)
+            defineDataBinding(layoutInflater, container)
 
-    private fun defineDataBinding(inflater: LayoutInflater, container: ViewGroup?): View {
-        dataBinding = DataBindingUtil.inflate(inflater, layoutToInflate(), container, false)
+    private fun defineDataBinding(layoutInflater: LayoutInflater, container: ViewGroup?): View {
+        dataBinding = DataBindingUtil.inflate(layoutInflater, layoutToInflate(), container, false)
         return dataBinding.root
     }
 

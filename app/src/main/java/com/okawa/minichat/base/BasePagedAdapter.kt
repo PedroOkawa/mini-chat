@@ -25,4 +25,6 @@ abstract class BasePagedAdapter<T>(diffCallBack: DiffUtil.ItemCallback<T>) :  Pa
         doOnBindViewHolder(holder, getItem(position), position)
     }
 
+    fun retrieveItem(position: Int) = getItem(position)
+
 }
