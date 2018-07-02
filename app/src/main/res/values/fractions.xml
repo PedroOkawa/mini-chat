@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- MESSAGE ADAPTER -->
+    <fraction name="adapter_message_avatar_weight">0.2</fraction>
+    <fraction name="adapter_message_text_weight">0.8</fraction>
+
+</resources>

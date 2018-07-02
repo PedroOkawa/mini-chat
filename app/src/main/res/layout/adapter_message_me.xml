@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/adapter_message_content_margin"
         android:gravity="top|end"
         android:weightSum="1">
 
@@ -19,7 +19,9 @@
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8">
+            android:layout_weight="@fraction/adapter_message_text_weight"
+            android:padding="@dimen/adapter_message_text_padding"
+            android:background="@drawable/background_message_me">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -27,7 +29,7 @@
                 android:lines="1"
                 android:textStyle="bold"
                 android:layout_gravity="end"
-                android:text="Me"/>
+                android:text="@string/username_me"/>
 
             <TextView
                 android:layout_width="match_parent"

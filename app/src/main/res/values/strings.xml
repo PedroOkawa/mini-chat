@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Mini-Chat</string>
+
+    <string name="app_name">Messages</string>
+
+    <string name="username_me">Me</string>
+
 </resources>

@@ -25,10 +25,6 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideAttachmentDao(database: MiniChatDatabase) = database.getAttachmentDao()
-
-    @Singleton
-    @Provides
     fun provideFullMessageDao(database: MiniChatDatabase) = database.getFullMessageDao()
 
     @Singleton

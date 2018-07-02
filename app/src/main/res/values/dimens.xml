@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="adapter_message_avatar_size">64dp</dimen>
+    <!-- MESSAGE ADAPTER -->
+    <dimen name="adapter_message_content_margin">10dp</dimen>
+    <dimen name="adapter_message_avatar_padding_start">4dp</dimen>
+    <dimen name="adapter_message_avatar_padding_end">16dp</dimen>
+    <dimen name="adapter_message_text_padding">10dp</dimen>
 
 </resources>

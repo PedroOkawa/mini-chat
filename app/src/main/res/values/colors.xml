@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- BASE -->
+
     <color name="color_primary">@color/color_green_008577</color>
     <color name="color_primary_dark">@color/color_green_00574B</color>
     <color name="color_accent">@color/color_pink_D81B60</color>
 
-    <color name="color_progress_background">@color/color_grey_AA737373</color>
+    <!-- PROGRESS -->
+
+    <color name="color_progress_background">@color/color_grey_AADEDEDE</color>
+
+    <!-- MESSAGE -->
+
+    <color name="color_message_me_background">@color/color_grey_AADEDEDE</color>
+    <color name="color_message_others_background">@color/color_white_FAFAFA</color>
+    <color name="color_message_others_border">@color/color_grey_EEEAEAEA</color>
+
+    <!-- COMMON -->
 
     <color name="color_green_008577">#008577</color>
     <color name="color_green_00574B">#00574B</color>
     <color name="color_pink_D81B60">#D81B60</color>
-    <color name="color_grey_AA737373">#AA737373</color>
+    <color name="color_grey_AADEDEDE">#AADEDEDE</color>
+    <color name="color_grey_EEEAEAEA">#EEEAEAEA</color>
+    <color name="color_white_FAFAFA">#FAFAFA</color>
 
 </resources>

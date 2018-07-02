@@ -10,6 +10,8 @@ data class Result<T>(val status: Status, val data: T?, val message: String?) {
 
         fun <T> loading(data: T?) = Result(Status.LOADING, data, null)
 
+        fun <T> empty(status: Status, message: String?, data: T? = null) = Result(status, data, message)
+
     }
 
 }

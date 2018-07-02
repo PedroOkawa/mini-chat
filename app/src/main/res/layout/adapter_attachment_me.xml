@@ -4,13 +4,10 @@
 
     <data>
         <variable
-            name="avatarUrl"
+            name="image"
             type="String"/>
         <variable
-            name="username"
-            type="String"/>
-        <variable
-            name="message"
+            name="title"
             type="String"/>
     </data>
 
@@ -19,35 +16,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/adapter_message_content_margin"
-        android:gravity="top">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="@fraction/adapter_message_avatar_weight"
-            android:paddingStart="@dimen/adapter_message_avatar_padding_start"
-            android:paddingEnd="@dimen/adapter_message_avatar_padding_end"
-            bind:circleImage="@{avatarUrl}"/>
+        android:gravity="top|end"
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="@fraction/adapter_message_text_weight"
-            android:padding="@dimen/adapter_message_text_padding"
-            android:background="@drawable/background_message_others">
+            android:background="@drawable/background_message_me">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textStyle="bold"
-                android:text="@{username}"/>
+                bind:image="@{image}"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{message}"/>
+                android:padding="@dimen/adapter_message_text_padding"
+                android:text="@{title}"/>
 
         </LinearLayout>
 
