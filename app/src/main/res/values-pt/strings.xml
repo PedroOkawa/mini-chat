@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">Mensagens</string>
+
+    <string name="username_me">Eu</string>
+
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+
+    <string name="confirmation_description">Tens certeza que deseja apagar esta mensagem?
+        (Todos os anexos relacionados à esta mensagem serão deletados)</string>
+
+</resources>

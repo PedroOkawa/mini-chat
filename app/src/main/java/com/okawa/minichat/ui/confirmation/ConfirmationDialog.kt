@@ -11,6 +11,7 @@ import javax.inject.Inject
 class ConfirmationDialog : BaseDialog<DialogConfirmationBinding, ConfirmationViewModel>() {
 
     companion object {
+        const val DIALOG_TAG = "fragment_confirmation"
         private const val MESSAGE_ID_PARAM = "message_id"
 
         fun newInstance(messageId: Long): ConfirmationDialog {

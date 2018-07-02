@@ -18,6 +18,9 @@ import com.okawa.minichat.utils.ConversationAdapter
 import com.okawa.minichat.utils.OnConversationItemTouchListener
 import com.okawa.minichat.utils.TouchListener
 import javax.inject.Inject
+import android.content.Intent
+import android.net.Uri
+
 
 class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
@@ -43,20 +46,22 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     private fun initRecyclerView() {
         dataBinding.rclChatContent.adapter = adapter
         dataBinding.rclChatContent.layoutManager = LinearLayoutManager(context)
-        dataBinding.rclChatContent.addOnItemTouchListener(OnConversationItemTouchListener(context, dataBinding.rclChatContent, object : TouchListener {
+        dataBinding.rclChatContent.addOnItemTouchListener(OnConversationItemTouchListener(context,
+                dataBinding.rclChatContent,
+                object: TouchListener {
 
-            override fun onTouch(view: View?, position: Int?) {
+                    override fun onTouch(view: View?, position: Int?) {
+                        val item = adapter.retrieveItem(position?:return)
+                        showAttachment(item)
+                    }
 
-            }
+                    override fun onLongTouch(view: View?, position: Int?) {
+                        val item = adapter.retrieveItem(position?:return)
+                        showConfirmationDialog(item)
+                    }
 
-            override fun onLongTouch(view: View?, position: Int?) {
-                val item = adapter.retrieveItem(position?:return)
-                val dialog = ConfirmationDialog.newInstance(item?.message?.messageId ?: return)
-                dialog.show(fragmentManager, "fragment_confirmation")
-                //viewModel.deleteMessage(item?.message?.messageId)
-            }
-
-        }))
+                }
+        ))
     }
 
     private fun retrieveData() {
@@ -77,6 +82,30 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
             }
             else -> {
 
+            }
+        }
+    }
+
+    private fun showConfirmationDialog(message: FullMessage?) {
+        val dialog = ConfirmationDialog.newInstance(message?.message?.messageId ?: return)
+        dialog.show(fragmentManager, ConfirmationDialog.DIALOG_TAG)
+    }
+
+    private fun showAttachment(message: FullMessage?) {
+        if(message?.message?.isAttachment == true) {
+            val intent = Intent()
+
+            val uri = Uri.parse(message.message?.url)
+            intent.data = uri
+            intent.action = android.content.Intent.ACTION_VIEW
+
+            if(intent.resolveActivity(context?.packageManager) != null) {
+                startActivity(intent)
+            } else {
+                Toast.makeText(context,
+                        "Impossible to handle the action",
+                        Toast.LENGTH_SHORT)
+                        .show()
             }
         }
     }

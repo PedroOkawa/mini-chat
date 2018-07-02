@@ -7,4 +7,9 @@
     <dimen name="adapter_message_avatar_padding_end">16dp</dimen>
     <dimen name="adapter_message_text_padding">10dp</dimen>
 
+    <!-- CONFIRMATION DIALOG -->
+    <dimen name="dialog_confirmation_content_padding">10dp</dimen>
+    <dimen name="dialog_confirmation_description_margin_bottom">16dp</dimen>
+    <dimen name="dialog_confirmation_button_margin">10dp</dimen>
+
 </resources>

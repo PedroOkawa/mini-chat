@@ -11,27 +11,39 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/dialog_confirmation_content_padding"
         android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Are you sure you want to delete this message? (All attachments related to this message will be deleted as well)"/>
+            android:layout_marginBottom="@dimen/dialog_confirmation_description_margin_bottom"
+            android:text="@string/confirmation_description"/>
 
-        <Button
-            android:id="@+id/btnConfirmationNo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NO"
-            android:onClick="@{onClickListener.onClick}"/>
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/btnConfirmationYes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="YES"
-            android:onClick="@{onClickListener.onClick}"/>
+            <Button
+                android:id="@+id/btnConfirmationNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dialog_confirmation_button_margin"
+                android:text="@string/no"
+                android:onClick="@{onClickListener.onClick}"/>
+
+            <Button
+                android:id="@+id/btnConfirmationYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dialog_confirmation_button_margin"
+                android:text="@string/yes"
+                android:onClick="@{onClickListener.onClick}"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

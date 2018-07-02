@@ -4,4 +4,10 @@
 
     <string name="username_me">Me</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="confirmation_description">Are you sure you want to delete this message?
+        (All attachments related to this message will be deleted as well)</string>
+
 </resources>
