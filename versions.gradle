@@ -17,13 +17,17 @@ ext.versions = [
         jUnitVersion: '4.12',
         kotlinExtensionsVersion: '1.0.0-alpha1',
         loggingOkHttpVersion: '3.9.1',
-        mockitoVersion: '1.10.19',
+        mockitoVersion: '2.8.47',
+        mockitoAndroidVersion: '2.19.0',
         picassoVersion: '2.5.2',
         retrofitVersion: '2.3.0',
         runnerVersion: '1.0.2',
         rxAndroidVersion: '2.0.1',
         rxJavaVersion: '2.0.1',
         rxKotlinVersion: '2.2.0',
+        testEspressoVersion: '3.0.2',
+        testRunnerVersion: '1.0.2',
+        testRulesVersion: '1.0.2',
         androidXTestVersion: '1.1.0-alpha1',
 
         // ANDROID CONFIGS

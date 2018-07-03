@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class DatabaseModule {
 
     companion object {
-        private const val DATABASE_NAME = "mini_chat.db"
+        const val DATABASE_NAME = "mini_chat.db"
     }
 
     @Singleton

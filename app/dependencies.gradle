@@ -40,7 +40,20 @@ dependencies {
     /* JUNIT */
     testImplementation libraries.jUnit.base
 
-    /* ESPRESSO */
-    androidTestImplementation libraries.google.runner
-    androidTestImplementation libraries.google.espressoCore
+    // DAGGER
+    androidTestImplementation libraries.dagger.base
+    androidTestImplementation libraries.dagger.android
+    androidTestImplementation libraries.dagger.androidSupport
+    kaptAndroidTest libraries.dagger.compiler
+    kaptAndroidTest libraries.dagger.androidProcessor
+
+    // ESPRESSO
+    androidTestImplementation libraries.test.contrib
+    androidTestImplementation libraries.test.core
+    androidTestImplementation libraries.test.intents
+    androidTestImplementation libraries.test.runner
+    androidTestImplementation libraries.test.rules
+
+    // MOCKITO
+    androidTestImplementation libraries.mockito.android
 }

@@ -11,7 +11,4 @@ interface FullMessageDao {
     @Query("SELECT message.*, user.* FROM message INNER JOIN user ON message.user_id = user._user_id ORDER BY id ASC")
     fun loadFullMessages() : DataSource.Factory<Int, FullMessage>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM message)")
-    fun hasAnyRecord() : Boolean
-
 }

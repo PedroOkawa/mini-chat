@@ -33,8 +33,6 @@ class DatabaseManager @Inject constructor(
 
     fun retrieveConversation() = fullMessageDao.loadFullMessages()
 
-    fun checkIfHasDataStored() = fullMessageDao.hasAnyRecord()
-
     fun deleteMessage(messageId: Long) {
         messageDao.delete(messageId)
     }
