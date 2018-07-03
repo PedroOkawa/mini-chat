@@ -17,17 +17,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/dialog_confirmation_description_margin_bottom"
+            android:gravity="start"
+            android:layout_margin="@dimen/dialog_confirmation_description_margin"
             android:text="@string/confirmation_description"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="end">
 
             <Button
+                style="?android:buttonBarButtonStyle"
                 android:id="@+id/btnConfirmationNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
                 android:onClick="@{onClickListener.onClick}"/>
 
             <Button
+                style="?android:buttonBarButtonStyle"
                 android:id="@+id/btnConfirmationYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

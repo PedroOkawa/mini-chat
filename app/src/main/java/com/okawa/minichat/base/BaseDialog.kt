@@ -24,20 +24,17 @@ abstract class BaseDialog<T : ViewDataBinding, VM : ViewModel> : DaggerAppCompat
 
     abstract fun doOnCreated()
 
+    abstract fun defineTitle(): String
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = defineViewModel()
+        dialog.setTitle(defineTitle())
         doOnCreated()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
             defineDataBinding(inflater, container)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
-        setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme_NoTitleBar)
-        super.onViewCreated(view, savedInstanceState)
-    }
 
     private fun defineDataBinding(layoutInflater: LayoutInflater, container: ViewGroup?): View {
         dataBinding = DataBindingUtil.inflate(layoutInflater, layoutToInflate(), container, false)

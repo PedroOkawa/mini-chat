@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/adapter_message_content_margin"
-        android:gravity="top">
+        android:gravity="top"
+        android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:layout_width="0dp"
