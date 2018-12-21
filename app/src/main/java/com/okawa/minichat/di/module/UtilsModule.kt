@@ -9,6 +9,9 @@ import javax.inject.Singleton
 @Module(includes = [ RepositoryModule::class ])
 class UtilsModule {
 
+    /**
+     * Provides the api manager
+     */
     @Singleton
     @Provides
     fun provideApiManager(apiService: ApiService) = ApiManager(apiService)
